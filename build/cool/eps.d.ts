@@ -740,6 +740,192 @@ declare namespace Eps {
 		[key: string]: any;
 	}
 
+	interface StoreInfoEntity {
+		/**
+		 * ID
+		 */
+		id?: number;
+
+		/**
+		 * 门店名称
+		 */
+		name?: string;
+
+		/**
+		 * 创建者ID
+		 */
+		userId?: number;
+
+		/**
+		 * 上级门店ID
+		 */
+		parentId?: number;
+
+		/**
+		 * 排序
+		 */
+		orderNum?: number;
+
+		/**
+		 * 门店类型 0-总部 1-区域 2-门店 3-加盟商
+		 */
+		type?: number;
+
+		/**
+		 * 门店编码
+		 */
+		code?: string;
+
+		/**
+		 * 联系人
+		 */
+		contact?: string;
+
+		/**
+		 * 联系电话
+		 */
+		phone?: string;
+
+		/**
+		 * 地址
+		 */
+		address?: string;
+
+		/**
+		 * 状态 0-禁用 1-启用
+		 */
+		status?: number;
+
+		/**
+		 * 备注
+		 */
+		remark?: string;
+
+		/**
+		 * 创建时间
+		 */
+		createTime?: string;
+
+		/**
+		 * 更新时间
+		 */
+		updateTime?: string;
+
+		/**
+		 * 任意键值
+		 */
+		[key: string]: any;
+	}
+
+	interface StoreRoleTemplateEntity {
+		/**
+		 * ID
+		 */
+		id?: number;
+
+		/**
+		 * 模板名称
+		 */
+		name?: string;
+
+		/**
+		 * 模板编码
+		 */
+		code?: string;
+
+		/**
+		 * 适用门店类型 0-总部 1-区域 2-门店 3-加盟商 (多选用逗号分隔)
+		 */
+		storeTypes?: string;
+
+		/**
+		 * 数据范围 0-本人 1-本门店 2-本门店及下级 3-全部
+		 */
+		dataScope?: number;
+
+		/**
+		 * 菜单权限
+		 */
+		menuIdList?: any;
+
+		/**
+		 * 门店权限
+		 */
+		storeIdList?: any;
+
+		/**
+		 * 状态 0-禁用 1-启用
+		 */
+		status?: number;
+
+		/**
+		 * 备注
+		 */
+		remark?: string;
+
+		/**
+		 * 创建时间
+		 */
+		createTime?: string;
+
+		/**
+		 * 更新时间
+		 */
+		updateTime?: string;
+
+		/**
+		 * 任意键值
+		 */
+		[key: string]: any;
+	}
+
+	interface StoreUserEntity {
+		/**
+		 * ID
+		 */
+		id?: number;
+
+		/**
+		 * 门店ID
+		 */
+		storeId?: number;
+
+		/**
+		 * 用户ID
+		 */
+		userId?: number;
+
+		/**
+		 * 岗位名称
+		 */
+		position?: string;
+
+		/**
+		 * 状态 0-禁用 1-启用
+		 */
+		status?: number;
+
+		/**
+		 * 备注
+		 */
+		remark?: string;
+
+		/**
+		 * 创建时间
+		 */
+		createTime?: string;
+
+		/**
+		 * 更新时间
+		 */
+		updateTime?: string;
+
+		/**
+		 * 任意键值
+		 */
+		[key: string]: any;
+	}
+
 	interface TaskInfoEntity {
 		/**
 		 * ID
@@ -2176,6 +2362,257 @@ declare namespace Eps {
 		request: Request;
 	}
 
+	interface StoreInfo {
+		/**
+		 * 获取子门店ID列表
+		 */
+		getChildrenIds(data?: any): Promise<any>;
+
+		/**
+		 * 根据类型获取门店
+		 */
+		getByType(data?: any): Promise<any>;
+
+		/**
+		 * 删除
+		 */
+		delete(data?: any): Promise<any>;
+
+		/**
+		 * 修改
+		 */
+		update(data?: any): Promise<any>;
+
+		/**
+		 * 排序
+		 */
+		order(data?: any): Promise<any>;
+
+		/**
+		 * 获取门店树
+		 */
+		tree(data?: any): Promise<any>;
+
+		/**
+		 * 列表查询
+		 */
+		list(data?: any): Promise<StoreInfoEntity[]>;
+
+		/**
+		 * 单个信息
+		 */
+		info(data?: any): Promise<StoreInfoEntity>;
+
+		/**
+		 * 新增
+		 */
+		add(data?: any): Promise<any>;
+
+		/**
+		 * 权限标识
+		 */
+		permission: {
+			getChildrenIds: string;
+			getByType: string;
+			delete: string;
+			update: string;
+			order: string;
+			tree: string;
+			list: string;
+			info: string;
+			add: string;
+		};
+
+		/**
+		 * 权限状态
+		 */
+		_permission: {
+			getChildrenIds: boolean;
+			getByType: boolean;
+			delete: boolean;
+			update: boolean;
+			order: boolean;
+			tree: boolean;
+			list: boolean;
+			info: boolean;
+			add: boolean;
+		};
+
+		request: Request;
+	}
+
+	interface StoreRole_template {
+		/**
+		 * 根据门店类型获取模板
+		 */
+		getTemplatesByStoreType(data?: any): Promise<any>;
+
+		/**
+		 * 应用模板到用户
+		 */
+		applyTemplate(data?: any): Promise<any>;
+
+		/**
+		 * 复制模板
+		 */
+		copyTemplate(data?: any): Promise<any>;
+
+		/**
+		 * 更新模板状态
+		 */
+		updateStatus(data?: any): Promise<any>;
+
+		/**
+		 * 删除
+		 */
+		delete(data?: any): Promise<any>;
+
+		/**
+		 * 修改
+		 */
+		update(data?: any): Promise<any>;
+
+		/**
+		 * 列表查询
+		 */
+		list(data?: any): Promise<StoreRoleTemplateEntity[]>;
+
+		/**
+		 * 单个信息
+		 */
+		info(data?: any): Promise<StoreRoleTemplateEntity>;
+
+		/**
+		 * 新增
+		 */
+		add(data?: any): Promise<any>;
+
+		/**
+		 * 权限标识
+		 */
+		permission: {
+			getTemplatesByStoreType: string;
+			applyTemplate: string;
+			copyTemplate: string;
+			updateStatus: string;
+			delete: string;
+			update: string;
+			list: string;
+			info: string;
+			add: string;
+		};
+
+		/**
+		 * 权限状态
+		 */
+		_permission: {
+			getTemplatesByStoreType: boolean;
+			applyTemplate: boolean;
+			copyTemplate: boolean;
+			updateStatus: boolean;
+			delete: boolean;
+			update: boolean;
+			list: boolean;
+			info: boolean;
+			add: boolean;
+		};
+
+		request: Request;
+	}
+
+	interface StoreUser {
+		/**
+		 * 从门店移除用户
+		 */
+		removeUserFromStore(data?: any): Promise<any>;
+
+		/**
+		 * 获取门店用户列表
+		 */
+		getUserListByStore(data?: any): Promise<any>;
+
+		/**
+		 * 添加用户到门店
+		 */
+		addUserToStore(data?: any): Promise<any>;
+
+		/**
+		 * 更新用户岗位
+		 */
+		updatePosition(data?: any): Promise<any>;
+
+		/**
+		 * 获取用户所属门店
+		 */
+		getUserStores(data?: any): Promise<any>;
+
+		/**
+		 * 转移用户到其他门店
+		 */
+		moveUser(data?: any): Promise<any>;
+
+		/**
+		 * 删除
+		 */
+		delete(data?: any): Promise<any>;
+
+		/**
+		 * 修改
+		 */
+		update(data?: any): Promise<any>;
+
+		/**
+		 * 列表查询
+		 */
+		list(data?: any): Promise<StoreUserEntity[]>;
+
+		/**
+		 * 单个信息
+		 */
+		info(data?: any): Promise<StoreUserEntity>;
+
+		/**
+		 * 新增
+		 */
+		add(data?: any): Promise<any>;
+
+		/**
+		 * 权限标识
+		 */
+		permission: {
+			removeUserFromStore: string;
+			getUserListByStore: string;
+			addUserToStore: string;
+			updatePosition: string;
+			getUserStores: string;
+			moveUser: string;
+			delete: string;
+			update: string;
+			list: string;
+			info: string;
+			add: string;
+		};
+
+		/**
+		 * 权限状态
+		 */
+		_permission: {
+			removeUserFromStore: boolean;
+			getUserListByStore: boolean;
+			addUserToStore: boolean;
+			updatePosition: boolean;
+			getUserStores: boolean;
+			moveUser: boolean;
+			delete: boolean;
+			update: boolean;
+			list: boolean;
+			info: boolean;
+			add: boolean;
+		};
+
+		request: Request;
+	}
+
 	interface RequestOptions {
 		url: string;
 		method?: "OPTIONS" | "GET" | "HEAD" | "POST" | "PUT" | "DELETE" | "TRACE" | "CONNECT";
@@ -2211,5 +2648,6 @@ declare namespace Eps {
 		space: { info: SpaceInfo; type: SpaceType };
 		task: { info: TaskInfo };
 		user: { address: UserAddress; info: UserInfo };
+		store: { info: StoreInfo; role_template: StoreRole_template; user: StoreUser };
 	};
 }
